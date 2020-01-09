@@ -23,7 +23,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['@/assets/main.sass'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -35,19 +35,30 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
-    '@nuxtjs/stylelint-module'
+    ['@nuxtjs/stylelint-module', { fix: true }]
   ],
   /*
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    '@nuxtjs/bulma',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    // https://github.com/vaso2/nuxt-fontawesome
+    [
+      'nuxt-fontawesome',
+      {
+        component: 'fa',
+        imports: [
+          {
+            set: '@fortawesome/free-solid-svg-icons',
+            icons: ['fas']
+          }
+        ]
+      }
+    ]
   ],
   /*
    ** Axios module configuration
@@ -58,13 +69,6 @@ export default {
    ** Build configuration
    */
   build: {
-    postcss: {
-      preset: {
-        features: {
-          customProperties: false
-        }
-      }
-    },
     /*
      ** You can extend webpack config here
      */
