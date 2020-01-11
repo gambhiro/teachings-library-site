@@ -1,15 +1,35 @@
 <template>
-  <div>
-    <h1 class="title">{{ title }}</h1>
+  <div class="columns">
+    <div class="column is-half">
+      <h1 class="page-title">{{ title.toLowerCase() }}</h1>
+    </div>
   </div>
 </template>
 
+<style lang="sass">
+h1.page-title
+  font-size: 3rem
+  text-align: right
+  text-transform: lowecase
+  font-weight: 400
+  margin-top: 20px
+  margin-bottom: 10px
+  color: #bfbfbf
+</style>
+
 <script>
+import utils from '~/assets/js/utils'
+
 export default {
   props: {
     title: {
       type: String,
-      default: 'Title'
+      required: true
+    }
+  },
+  head() {
+    return {
+      title: utils.titleCase(this.title) + ' - Forest Sangha'
     }
   }
 }

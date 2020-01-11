@@ -8,14 +8,7 @@
     <div class="container">
       <div class="navbar-brand">
         <nuxt-link class="navbar-item" to="/">
-          <svg
-            width="20px"
-            height="20px"
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="50" cy="50" r="50" fill="#A07838" />
-          </svg>
+          <img src="~/assets/images/topnav-logo.svg" />
         </nuxt-link>
 
         <a
@@ -33,17 +26,61 @@
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <nuxt-link to="/about" class="navbar-item">
-            about
-          </nuxt-link>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <nuxt-link to="/about" class="navbar-link">
+              about
+            </nuxt-link>
 
-          <nuxt-link to="/ajahn-chah" class="navbar-item">
-            ajahn chah
-          </nuxt-link>
+            <div class="navbar-dropdown">
+              <nuxt-link to="/about/history" class="navbar-item">
+                history
+              </nuxt-link>
 
-          <nuxt-link to="/community" class="navbar-item">
-            community
-          </nuxt-link>
+              <nuxt-link to="/about/this-website" class="navbar-item">
+                this website
+              </nuxt-link>
+
+              <nuxt-link to="/about/disclaimer" class="navbar-item">
+                disclaimer
+              </nuxt-link>
+            </div>
+          </div>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <nuxt-link to="/ajahn-chah" class="navbar-link">
+              ajahn chah
+            </nuxt-link>
+
+            <div class="navbar-dropdown">
+              <nuxt-link to="/ajahn-chah/dedication" class="navbar-item">
+                dedication
+              </nuxt-link>
+
+              <nuxt-link to="/ajahn-chah/biography" class="navbar-item">
+                biography
+              </nuxt-link>
+            </div>
+          </div>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <nuxt-link to="/community" class="navbar-link">
+              community
+            </nuxt-link>
+
+            <div class="navbar-dropdown">
+              <nuxt-link to="/community/news" class="navbar-item">
+                news
+              </nuxt-link>
+
+              <nuxt-link to="/community/monasteries" class="navbar-item">
+                monasteries
+              </nuxt-link>
+
+              <nuxt-link to="/community/calendars" class="navbar-item">
+                calendars
+              </nuxt-link>
+            </div>
+          </div>
 
           <div class="navbar-item has-dropdown is-hoverable">
             <nuxt-link to="/teachings" class="navbar-link">
@@ -68,7 +105,7 @@
               <input
                 class="input is-rounded"
                 type="text"
-                placeholder="search"
+                placeholder="Search (press '/' to focus)"
               />
               <span class="icon is-small is-right">
                 <fa :icon="fas.faSearch" />

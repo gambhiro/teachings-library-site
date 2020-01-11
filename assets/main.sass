@@ -1,8 +1,14 @@
 @charset "utf-8"
 
-$body-background-color: darken(white, 5%)
+@import "colors"
+@import "mixins"
 
 @import "~bulma/bulma"
+
+.container
+  +desktop
+    padding-left: (4 * $gap)
+    padding-right: (4 * $gap)
 
 @import "custom"
 

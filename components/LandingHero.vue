@@ -4,15 +4,15 @@
       <div class="container">
         <div class="columns">
           <div class="column is-two-fifths">
-            <figure id="figure-left" class="image is-2by3">
-              <img src="/images/home-page-desktop.jpg" alt="Buddha statue" />
+            <figure id="figure-left" class="image">
+              <img
+                src="~assets/images/home-page-desktop.jpg"
+                alt="Buddha statue"
+              />
             </figure>
           </div>
 
           <div class="column">
-            <figure id="figure-right" class="image">
-              <img src="/images/forestSangha.svg" alt="logo" />
-            </figure>
             <h1 class="title">
               forestSangha
             </h1>
@@ -28,45 +28,32 @@
   </div>
 </template>
 
-<style>
-#logo-body {
-  background-color: #fff;
-  /* padding-top: 0; */
-  /* padding-bottom: 0; */
-}
+<style lang="sass">
+#landing-hero
+  .hero-body
+    padding-top: 0
+    padding-bottom: 0
 
-/* constrain to about 1170px */
-/*
-    #landing-hero {
-    padding-left: 20rem;
-    padding-right: 20rem;
-    }
-  */
+#logo-body
+  background-color: white
 
-#figure-left img {
-  height: 500px;
-  width: auto;
-}
+  h1.title
+    color: rgba(0, 0, 0, 0)
+    font-size: 25px
+    background-image: url(~assets/images/forestSangha.svg)
+    background-repeat: no-repeat
+    background-size: contain
+    margin-top: 280px
+    height: 100px
+    width: auto
 
-#figure-right {
-  margin-top: 280px;
-}
+  h2.subtitle
+    font-size: 18px
 
-#figure-right img {
-  height: 100px;
-  width: auto;
-}
+#figure-left img
+  height: 500px
+  width: auto
 
-.fs-logo-appear {
-  animation: 2s appear;
-}
-
-@keyframes appear {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+.fs-logo-appear
+  animation: 2s appear
 </style>

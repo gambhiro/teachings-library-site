@@ -35,7 +35,11 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     ['@nuxtjs/eslint-module', { fix: true }],
     // Doc: https://github.com/nuxt-community/stylelint-module
-    ['@nuxtjs/stylelint-module', { fix: true }]
+    /*
+    NOTE: StyleLint autofixing conflicts with eslint and they keep changing the
+    same file. For example fighting over the last newline in a <style lang="sass"> block.
+    */
+    '@nuxtjs/stylelint-module'
   ],
   /*
    ** Nuxt.js modules
@@ -46,6 +50,8 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    // https://github.com/nuxt-community/style-resources-module
+    '@nuxtjs/style-resources',
     // https://github.com/vaso2/nuxt-fontawesome
     [
       'nuxt-fontawesome',
@@ -60,6 +66,9 @@ export default {
       }
     ]
   ],
+  styleResources: {
+    sass: ['./assets/_colors.sass', './assets/_mixins.sass']
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

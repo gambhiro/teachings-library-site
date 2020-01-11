@@ -1,24 +1,28 @@
 <template>
   <div>
-    <PageHeader :title="title" />
-    <p>{{ text }}</p>
+    <BreadCrumbs :items="items" />
+    <nuxt-child />
   </div>
 </template>
 
 <script>
-import PageHeader from '~/components/PageHeader.vue'
+import BreadCrumbs from '~/components/BreadCrumbs.vue'
 
 export default {
   layout: 'page',
 
   components: {
-    PageHeader
+    BreadCrumbs
   },
 
-  asyncData(context) {
+  asyncData() {
     return {
-      title: 'About',
-      text: 'Nam euismod tellus id erat.'
+      items: [
+        { toPath: '/about', label: 'about' },
+        { toPath: '/about/history', label: 'history' },
+        { toPath: '/about/this-website', label: 'this website' },
+        { toPath: '/about/disclaimer', label: 'disclaimer' }
+      ]
     }
   }
 }
