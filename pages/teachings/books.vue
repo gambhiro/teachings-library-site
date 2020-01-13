@@ -22,8 +22,8 @@ export default {
     PageHeader
   },
 
-  async asyncData({ $axios }) {
-    const { data } = await $axios.get('/books')
+  async asyncData(context) {
+    const { data } = await context.app.$api.get('/books')
     return { books: data }
   }
 }

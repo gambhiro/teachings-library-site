@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   mode: 'universal',
   /*
    ** Headers of the page
@@ -27,7 +27,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['@/plugins/axios.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -80,9 +80,7 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {
-    baseURL: process.env.NODE_ENV === 'production' ? 'http://api.a-buddha-ujja.org' : 'http://localhost:1337'
-  },
+  axios: {},
   /*
    ** Build configuration
    */
