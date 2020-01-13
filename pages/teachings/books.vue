@@ -1,7 +1,14 @@
 <template>
   <div>
-    <PageHeader :title="title" />
-    <p>{{ text }}</p>
+    <PageHeader title="Books" />
+    <ul>
+      <li v-for="book in books">
+        <p>
+          <strong>{{ book.title }}</strong>
+        </p>
+        <div v-html="$md.render(book.description)"></div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -15,11 +22,9 @@ export default {
     PageHeader
   },
 
-  asyncData(context) {
-    return {
-      title: 'Books',
-      text: 'Nam euismod tellus id erat.'
-    }
+  async asyncData({ $axios }) {
+    const { data } = await $axios.get('/books')
+    return { books: data }
   }
 }
 </script>

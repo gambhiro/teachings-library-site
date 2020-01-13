@@ -50,6 +50,9 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    // https://github.com/nuxt-community/modules/tree/master/packages/markdownit
+    // https://github.com/markdown-it/markdown-it
+    '@nuxtjs/markdownit',
     // https://github.com/nuxt-community/style-resources-module
     '@nuxtjs/style-resources',
     // https://github.com/vaso2/nuxt-fontawesome
@@ -66,6 +69,10 @@ export default {
       }
     ]
   ],
+  markdownit: {
+    linkify: true,
+    injected: true
+  },
   styleResources: {
     sass: ['./assets/_colors.sass', './assets/_mixins.sass']
   },
@@ -73,7 +80,9 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.NODE_ENV === 'production' ? 'http://api.a-buddha-ujja.org' : 'http://localhost:1337'
+  },
   /*
    ** Build configuration
    */
