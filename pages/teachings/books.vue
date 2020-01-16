@@ -1,7 +1,7 @@
 <template>
   <div>
     <PageHeader title="Books" />
-    <ul>
+    <ul v-if="books.length > 0">
       <li v-for="book in books">
         <p>
           <strong>{{ book.title }}</strong>
@@ -9,6 +9,9 @@
         <div v-html="$md.render(book.description)"></div>
       </li>
     </ul>
+    <div v-else>
+      <p>No books were found.</p>
+    </div>
   </div>
 </template>
 
@@ -22,9 +25,23 @@ export default {
     PageHeader
   },
 
-  async asyncData(context) {
-    const { data } = await context.app.$api.get('/books')
-    return { books: data }
+  data() {
+    return { books: [] }
+  },
+
+  asyncData(context) {
+    return context.app.$api
+      .get('/books')
+      .then((res) => {
+        return { books: res.data }
+      })
+      .catch((e) => {
+        // context.error({ statusCode: 404, message: 'Books not found' })
+
+        // Silently ignore the network error
+        console.error('Error: ' + e)
+        return { books: [] }
+      })
   }
 }
 </script>
