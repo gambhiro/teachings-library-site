@@ -2,11 +2,11 @@
   <div>
     <PageHeader title="Books" />
     <ul v-if="books.length > 0">
-      <li v-for="book in books">
+      <li v-for="book in books" :key="book.title">
         <p>
           <strong>{{ book.title }}</strong>
         </p>
-        <div v-html="$md.render(book.description)"></div>
+        <div v-html="$md.render(book.description)" />
       </li>
     </ul>
     <div v-else>
@@ -25,10 +25,6 @@ export default {
     PageHeader
   },
 
-  data() {
-    return { books: [] }
-  },
-
   asyncData(context) {
     return context.app.$api
       .get('/books')
@@ -42,6 +38,10 @@ export default {
         console.error('Error: ' + e)
         return { books: [] }
       })
+  },
+
+  data() {
+    return { books: [] }
   }
 }
 </script>

@@ -33,13 +33,14 @@ module.exports = {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    ['@nuxtjs/eslint-module', { fix: true }],
+    '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     /*
     NOTE: StyleLint autofixing conflicts with eslint and they keep changing the
     same file. For example fighting over the last newline in a <style lang="sass"> block.
     */
-    '@nuxtjs/stylelint-module'
+    '@nuxtjs/stylelint-module',
+    ['@nuxt/typescript-build', { typeCheck: false }]
   ],
   /*
    ** Nuxt.js modules
@@ -69,6 +70,11 @@ module.exports = {
       }
     ]
   ],
+  typescript: {
+    typeCheck: {
+      eslint: true
+    }
+  },
   markdownit: {
     linkify: true,
     injected: true
@@ -88,6 +94,12 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    // extend(_config, _ctx) {}
+    babel: {
+      plugins: [
+        ['@babel/plugin-proposal-decorators', { legacy: true }],
+        ['@babel/plugin-proposal-class-properties', { loose: true }]
+      ]
+    }
   }
 }

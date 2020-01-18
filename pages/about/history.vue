@@ -15,7 +15,7 @@ export default {
     PageHeader
   },
 
-  asyncData(context) {
+  asyncData(_context) {
     return {
       title: 'History',
       text: 'Nam euismod tellus id erat.'

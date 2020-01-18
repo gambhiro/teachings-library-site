@@ -15,7 +15,7 @@ export default {
     PageHeader
   },
 
-  asyncData(context) {
+  asyncData(_context) {
     return {
       title: 'Ajahn Chah',
       text: 'Nam euismod tellus id erat.'

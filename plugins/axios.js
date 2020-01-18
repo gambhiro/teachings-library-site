@@ -1,4 +1,4 @@
-export default ({ app, $axios }, inject) => {
+export default ({ _app, $axios }, inject) => {
   // Create a custom axios instance
   const api = $axios.create()
 
