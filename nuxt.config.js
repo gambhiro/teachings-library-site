@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   mode: 'universal',
   /*
@@ -16,6 +18,12 @@ module.exports = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+  // During the build, webpack is going to replace these variables with strings
+  // where it is used in the code.
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    apiUrl: process.env.API_URL || 'http://localhost:1337'
+  },
   /*
    ** Customize the progress-bar color
    */
@@ -27,7 +35,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/axios.js'],
+  plugins: ['@/plugins/axios'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -102,4 +110,4 @@ module.exports = {
       ]
     }
   }
-}
+};
