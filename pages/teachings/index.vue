@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import PageHeader from '~/components/PageHeader.vue'
+import PageHeader from '~/components/PageHeader.vue';
 
 export default {
   layout: 'page',
@@ -19,7 +19,7 @@ export default {
     return {
       title: 'Teachings',
       text: 'Nam euismod tellus id erat.'
-    }
+    };
   }
-}
+};
 </script>

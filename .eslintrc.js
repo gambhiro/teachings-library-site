@@ -25,6 +25,7 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
+    'prettier/prettier': 'warn', //  0 = off, 1 = warn, 2 = error
     'max-len': ['error', {'code': 100, 'ignoreUrls': true}],
     'nuxt/no-cjs-in-config': 'off',
     'no-console': 'off',
