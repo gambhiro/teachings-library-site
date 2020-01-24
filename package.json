@@ -10,6 +10,8 @@
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
+    "deploy": "yarn build && gcloud app deploy app.yaml --project fs-dev-265409",
+    "logs": "gcloud app logs tail --project=fs-dev-265409 -s default",
     "postinstall": "[ -z \"$GANDI\" ] || NODE_ENV=production npm run build"
   },
   "config": {
