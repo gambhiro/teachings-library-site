@@ -35,19 +35,19 @@ export const mutations: MutationTree<BooksStoreState> = {
   setBooksAll(state, all: BooksData) {
     state.all = all;
   },
-  setBooksSuccess(state, data: Array<Book>) {
+  setBooksSuccess(state, all: BooksData) {
     state.all.kind = RD.rk.Success;
-    state.all.data = data;
+    state.all.data = all.data;
   },
-  setBooksFailure(state, e: any) {
+  setBooksFailure(state, all: BooksData) {
     state.all.kind = RD.rk.Failure;
-    state.all.error = e;
+    state.all.error = all.error;
   }
 };
 
 export const actions: ActionTree<BooksStoreState, RootState> = {
   async fetchBooks({ commit }) {
-    const ret = await this.$api
+    const ret = await this.app.$api
       .get('/books')
       .then((res: any) => {
         const s: BooksData = {

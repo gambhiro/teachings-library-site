@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import CrumbItem from '~/components/CrumbItem.vue'
+import CrumbItem from '~/components/CrumbItem.vue';
 
 export default {
   components: {
@@ -24,5 +24,5 @@ export default {
       required: true
     }
   }
-}
+};
 </script>

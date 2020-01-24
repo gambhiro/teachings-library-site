@@ -36,7 +36,7 @@ import { Book } from '~/types';
   },
 
   async fetch(context) {
-    if (context.req && this.booksKind === RD.rk.NotAsked) {
+    if (context.req && context.store.state.books.all.kind === RD.rk.NotAsked) {
       await context.store.dispatch('books/fetchBooks');
     }
   }
@@ -47,21 +47,22 @@ export default class extends Vue {
   RD = RD;
 
   mounted(): void {
-    if (this.booksKind === RD.rk.NotAsked) {
+    const a = (this.$store.state.books as BooksStoreState).all.kind;
+    if (a === RD.rk.NotAsked) {
       this.$store.dispatch('books/fetchBooks');
     }
   }
 
   get booksKind(): RD.rk {
-    return (this.$store.state.books as BookStoreState).all.kind;
+    return (this.$store.state.books as BooksStoreState).all.kind;
   }
 
   get booksData(): Array<Book> {
-    return (this.$store.state.books as BookStoreState).all.data;
+    return (this.$store.state.books as BooksStoreState).all.data;
   }
 
   get booksError(): string {
-    return (this.$store.state.books as BookStoreState).all.error;
+    return (this.$store.state.books as BooksStoreState).all.error;
   }
 }
 </script>
