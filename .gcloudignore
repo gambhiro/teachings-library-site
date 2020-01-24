@@ -2,10 +2,3 @@
 .git
 .gitignore
 node_modules/
-#!include:.gitignore
-
-# Include build files for a 'universal' type app.
-
-# nuxt.js build output
-!.nuxt
-
