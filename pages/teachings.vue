@@ -5,24 +5,25 @@
   </div>
 </template>
 
-<script>
-import BreadCrumbs from '~/components/BreadCrumbs.vue'
+<script lang="ts">
+import { Vue, Component } from 'nuxt-property-decorator';
+import BreadCrumbs from '~/components/BreadCrumbs.vue';
+import { Link } from '~/types';
 
-export default {
-  layout: 'page',
-
+@Component({
   components: {
     BreadCrumbs
-  },
-
-  asyncData() {
-    return {
-      items: [
-        { toPath: '/teachings', label: 'teachings' },
-        { toPath: '/teachings/audio', label: 'audio' },
-        { toPath: '/teachings/books', label: 'books' }
-      ]
-    }
   }
+})
+export default class extends Vue {
+  layout(): string {
+    return 'page';
+  }
+
+  items: Link[] = [
+    { toPath: '/teachings', label: 'teachings' },
+    { toPath: '/teachings/talks', label: 'talks' },
+    { toPath: '/teachings/books', label: 'books' }
+  ];
 }
 </script>

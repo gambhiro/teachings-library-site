@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   mode: 'universal',
   /*
@@ -16,6 +18,12 @@ module.exports = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+  // During the build, webpack is going to replace these variables with strings
+  // where it is used in the code.
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    apiUrl: process.env.API_URL || 'http://localhost:1337'
+  },
   /*
    ** Customize the progress-bar color
    */
@@ -27,19 +35,20 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/axios.js'],
+  plugins: ['@/plugins/axios', '@/plugins/remote-data'],
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    ['@nuxtjs/eslint-module', { fix: true }],
+    '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     /*
     NOTE: StyleLint autofixing conflicts with eslint and they keep changing the
     same file. For example fighting over the last newline in a <style lang="sass"> block.
     */
-    '@nuxtjs/stylelint-module'
+    '@nuxtjs/stylelint-module',
+    ['@nuxt/typescript-build', { typeCheck: false }]
   ],
   /*
    ** Nuxt.js modules
@@ -69,6 +78,11 @@ module.exports = {
       }
     ]
   ],
+  typescript: {
+    typeCheck: {
+      eslint: true
+    }
+  },
   markdownit: {
     linkify: true,
     injected: true
@@ -88,6 +102,12 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    // extend(_config, _ctx) {}
+    babel: {
+      plugins: [
+        ['@babel/plugin-proposal-decorators', { legacy: true }],
+        ['@babel/plugin-proposal-class-properties', { loose: true }]
+      ]
+    }
   }
-}
+};

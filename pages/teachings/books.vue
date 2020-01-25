@@ -1,47 +1,70 @@
 <template>
   <div>
     <PageHeader title="Books" />
-    <ul v-if="books.length > 0">
-      <li v-for="book in books">
+    <div v-if="booksKind === RD.rk.NotAsked">
+      <p>Connecting...</p>
+    </div>
+    <div v-else-if="booksKind === RD.rk.Loading">
+      <p>Loading...</p>
+    </div>
+    <div v-else-if="booksKind === RD.rk.Failure">
+      <p>Error</p>
+      <p>{{ booksError }}</p>
+    </div>
+    <ul v-else-if="booksKind === RD.rk.Success">
+      <li v-for="book in booksData" :key="book.title">
         <p>
           <strong>{{ book.title }}</strong>
         </p>
-        <div v-html="$md.render(book.description)"></div>
+        <div v-if="book.description" v-html="$md.render(book.description)" />
       </li>
     </ul>
-    <div v-else>
-      <p>No books were found.</p>
-    </div>
   </div>
 </template>
 
-<script>
-import PageHeader from '~/components/PageHeader.vue'
+<script lang="ts">
+import { Vue, Component } from 'nuxt-property-decorator';
+import PageHeader from '~/components/PageHeader.vue';
+import * as RD from '~/plugins/remote-data';
+// eslint-disable-next-line
+import { BooksStoreState } from '~/store/books';
+import { Book } from '~/types';
 
-export default {
-  layout: 'page',
-
+@Component({
   components: {
     PageHeader
   },
 
-  data() {
-    return { books: [] }
-  },
+  async fetch(context) {
+    if (context.req && context.store.state.books.all.kind === RD.rk.NotAsked) {
+      await context.store.dispatch('books/fetchBooks');
+    }
+  }
+})
+export default class extends Vue {
+  layout(): string {
+    return 'page';
+  }
 
-  asyncData(context) {
-    return context.app.$api
-      .get('/books')
-      .then((res) => {
-        return { books: res.data }
-      })
-      .catch((e) => {
-        // context.error({ statusCode: 404, message: 'Books not found' })
+  RD = RD;
 
-        // Silently ignore the network error
-        console.error('Error: ' + e)
-        return { books: [] }
-      })
+  mounted(): void {
+    const a = (this.$store.state.books as BooksStoreState).all.kind;
+    if (a === RD.rk.NotAsked) {
+      this.$store.dispatch('books/fetchBooks');
+    }
+  }
+
+  get booksKind(): RD.rk {
+    return (this.$store.state.books as BooksStoreState).all.kind;
+  }
+
+  get booksData(): Array<Book> {
+    return (this.$store.state.books as BooksStoreState).all.data;
+  }
+
+  get booksError(): string {
+    return (this.$store.state.books as BooksStoreState).all.error;
   }
 }
 </script>

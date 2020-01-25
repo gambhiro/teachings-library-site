@@ -17,20 +17,19 @@ h1.page-title
   color: #bfbfbf
 </style>
 
-<script>
-import utils from '~/assets/js/utils'
+<script lang="ts">
+import { Vue, Component, Prop } from 'nuxt-property-decorator';
+import utils from '~/assets/js/utils';
 
-export default {
-  props: {
-    title: {
-      type: String,
-      required: true
-    }
-  },
-  head() {
+@Component
+export default class extends Vue {
+  @Prop({ required: true, type: String })
+  title!: string;
+
+  head(): {} {
     return {
       title: utils.titleCase(this.title) + ' - Forest Sangha'
-    }
+    };
   }
 }
 </script>

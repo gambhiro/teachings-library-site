@@ -4,39 +4,35 @@
   </li>
 </template>
 
-<script>
-export default {
-  props: {
-    toPath: {
-      type: String,
-      required: true
-    },
-    label: {
-      type: String,
-      required: true
+<script lang="ts">
+import { Vue, Component, Prop } from 'nuxt-property-decorator';
+
+@Component
+export default class extends Vue {
+  @Prop({ required: true, type: String })
+  toPath!: string;
+
+  @Prop({ required: true, type: String })
+  label!: string;
+
+  get isActive(): string {
+    if (this.currentPath === this.toPath) {
+      return 'is-active';
+    } else {
+      return '';
     }
-  },
+  }
 
-  computed: {
-    isActive() {
-      if (this.currentPath === this.toPath) {
-        return 'is-active'
-      } else {
-        return ''
-      }
-    },
-
-    ariaCurrent() {
-      if (this.currentPath === this.toPath) {
-        return 'page'
-      } else {
-        return ''
-      }
-    },
-
-    currentPath() {
-      return this.$route.path
+  get ariaCurrent(): string {
+    if (this.currentPath === this.toPath) {
+      return 'page';
+    } else {
+      return '';
     }
+  }
+
+  get currentPath(): string {
+    return this.$route.path;
   }
 }
 </script>

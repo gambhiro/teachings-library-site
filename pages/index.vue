@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import TopNav from '~/components/TopNav.vue'
-import Footer from '~/components/Footer.vue'
-import LandingHero from '~/components/LandingHero.vue'
+import TopNav from '~/components/TopNav.vue';
+import Footer from '~/components/Footer.vue';
+import LandingHero from '~/components/LandingHero.vue';
 
 export default {
   components: {
@@ -30,7 +30,7 @@ export default {
     Footer,
     LandingHero
   }
-}
+};
 </script>
 
 <style lang="sass">
