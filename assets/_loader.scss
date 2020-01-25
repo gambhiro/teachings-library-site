@@ -1,0 +1,51 @@
+// https://icons8.com/cssload/en/spinners/4
+
+// <div class="cssload-container">
+//   <div class="cssload-zenith"></div>
+// </div>
+
+$loader-size: 80px;
+$loader-time: 3000ms;
+$loader-color: hsl(0, 0%, 20%);
+
+.cssload-container {
+	width: 100%;
+	height: $loader-size;
+	text-align: center;
+}
+
+.cssload-zenith {
+	width: $loader-size;
+	height: $loader-size;
+	margin: 0 auto;
+	border-radius: 50%;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	box-shadow: 4px 4px 2px $loader-color;
+	animation: cssload-spin $loader-time infinite linear;
+		-o-animation: cssload-spin $loader-time infinite linear;
+		-ms-animation: cssload-spin $loader-time infinite linear;
+		-webkit-animation: cssload-spin $loader-time infinite linear;
+		-moz-animation: cssload-spin $loader-time infinite linear;
+}
+
+@keyframes cssload-spin {
+	100%{ transform: rotate(360deg); }
+}
+
+@-o-keyframes cssload-spin {
+	100%{ -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-ms-keyframes cssload-spin {
+	100%{ -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-webkit-keyframes cssload-spin {
+	100%{ -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-moz-keyframes cssload-spin {
+	100%{ -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}

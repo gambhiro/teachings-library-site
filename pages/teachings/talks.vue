@@ -5,7 +5,9 @@
       <p>Connecting...</p>
     </div>
     <div v-else-if="talksKind === RD.rk.Loading">
-      <p>Loading...</p>
+      <div class="cssload-container">
+        <div class="cssload-zenith"></div>
+      </div>
     </div>
     <div v-else-if="talksKind === RD.rk.Failure">
       <p>Error</p>
