@@ -8,6 +8,13 @@ export interface Book {
   title: string;
   authors: Author[];
   description: string;
+  downloads: Download[];
+}
+
+export interface Download {
+  ext: string;
+  url: string;
+  name: string;
 }
 
 export interface Talk {
@@ -15,6 +22,10 @@ export interface Talk {
   title: string;
   author: Author;
   description: string;
+  // eslint-disable-next-line camelcase
+  album_title: string;
+  // eslint-disable-next-line camelcase
+  track_number: number;
 }
 
 export interface Link {

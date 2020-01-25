@@ -5,26 +5,21 @@
       <p>Connecting...</p>
     </div>
     <div v-else-if="talksKind === RD.rk.Loading">
-      <p>Loading...</p>
+      <Loader />
     </div>
     <div v-else-if="talksKind === RD.rk.Failure">
       <p>Error</p>
       <p>{{ talksError }}</p>
     </div>
-    <ul v-else-if="talksKind === RD.rk.Success">
-      <li v-for="talk in talksData" :key="talk.title">
-        <p>
-          <strong>{{ talk.title }}</strong>
-        </p>
-        <div v-if="talk.description" v-html="$md.render(talk.description)" />
-      </li>
-    </ul>
+    <TalkList v-else-if="talksKind === RD.rk.Success" :items="talksData" />
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
 import PageHeader from '~/components/PageHeader.vue';
+import TalkList from '~/components/TalkList.vue';
+import Loader from '~/components/Loader.vue';
 import * as RD from '~/plugins/remote-data';
 // eslint-disable-next-line
 import { TalksStoreState } from '~/store/talks';
@@ -32,7 +27,9 @@ import { Talk } from '~/types';
 
 @Component({
   components: {
-    PageHeader
+    PageHeader,
+    TalkList,
+    Loader
   },
 
   async fetch(context) {
@@ -51,6 +48,7 @@ export default class extends Vue {
   mounted(): void {
     const a = (this.$store.state.talks as TalksStoreState).all.kind;
     if (a === RD.rk.NotAsked) {
+      this.$store.commit('talks/setTalksLoading');
       this.$store.dispatch('talks/fetchTalks');
     }
   }
@@ -60,7 +58,28 @@ export default class extends Vue {
   }
 
   get talksData(): Array<Talk> {
-    return (this.$store.state.talks as TalksStoreState).all.data;
+    const d = (this.$store.state.talks as TalksStoreState).all.data.slice(0);
+    const sorted = d.sort(function(a, b) {
+      const albumA = a.album_title.toUpperCase();
+      const albumB = b.album_title.toUpperCase();
+      if (albumA < albumB) {
+        return -1;
+      }
+      if (albumA > albumB) {
+        return 1;
+      }
+
+      if (a.track_number < b.track_number) {
+        return -1;
+      }
+
+      if (a.track_number > b.track_number) {
+        return 1;
+      }
+
+      return 0;
+    });
+    return sorted;
   }
 
   get talksError(): string {
