@@ -118,14 +118,15 @@
   </nav>
 </template>
 
-<script>
-import { fas } from '@fortawesome/free-solid-svg-icons'
+<script lang="ts">
+import { Vue, Component } from 'nuxt-property-decorator';
+import { IconPack } from '@fortawesome/fontawesome-common-types';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
-export default {
-  computed: {
-    fas() {
-      return fas
-    }
+@Component
+export default class extends Vue {
+  get fas(): IconPack {
+    return fas;
   }
 }
 </script>

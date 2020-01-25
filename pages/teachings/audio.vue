@@ -25,7 +25,9 @@ import PageHeader from '~/components/PageHeader.vue'
   }
 })
 export default class extends Vue {
-  layout = 'page'
+  layout(): string {
+    return 'page';
+  }
 
   asyncData(context): Promise<Record<string, any>> {
     return context.app.$api

@@ -5,21 +5,21 @@
   </div>
 </template>
 
-<script>
-import PageHeader from '~/components/PageHeader.vue'
+<script lang="ts">
+import { Vue, Component } from 'nuxt-property-decorator';
+import PageHeader from '~/components/PageHeader.vue';
 
-export default {
-  layout: 'page',
-
+@Component({
   components: {
     PageHeader
-  },
-
-  asyncData(_context) {
-    return {
-      title: 'Monasteries',
-      text: 'Nam euismod tellus id erat.'
-    }
   }
+})
+export default class extends Vue {
+  layout(): string {
+    return 'page';
+  }
+
+  title = 'Monasteries';
+  text = 'Nam euismod tellus id erat.';
 }
 </script>

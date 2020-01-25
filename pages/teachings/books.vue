@@ -42,7 +42,9 @@ import { Book } from '~/types';
   }
 })
 export default class extends Vue {
-  layout = 'page';
+  layout(): string {
+    return 'page';
+  }
 
   RD = RD;
 

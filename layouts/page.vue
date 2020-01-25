@@ -18,15 +18,15 @@
 </template>
 
 <script>
-import TopNav from '~/components/TopNav.vue'
-import Footer from '~/components/Footer.vue'
+import TopNav from '~/components/TopNav.vue';
+import Footer from '~/components/Footer.vue';
 
 export default {
   components: {
     TopNav,
     Footer
   }
-}
+};
 </script>
 
 <style lang="sass">

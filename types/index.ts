@@ -16,3 +16,8 @@ export interface Talk {
   author: Author;
   description: string;
 }
+
+export interface Link {
+  toPath: string;
+  label: string;
+}

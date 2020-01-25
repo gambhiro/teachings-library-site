@@ -11,18 +11,18 @@
   </nav>
 </template>
 
-<script>
+<script lang="ts">
+import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import CrumbItem from '~/components/CrumbItem.vue';
+import { Link } from '~/types';
 
-export default {
+@Component({
   components: {
     CrumbItem
-  },
-  props: {
-    items: {
-      type: Array,
-      required: true
-    }
   }
-};
+})
+export default class extends Vue {
+  @Prop({ required: true, type: Array })
+  items!: Array<Link>;
+}
 </script>
