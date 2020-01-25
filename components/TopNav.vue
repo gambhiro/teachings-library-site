@@ -88,8 +88,8 @@
             </nuxt-link>
 
             <div class="navbar-dropdown">
-              <nuxt-link to="/teachings/audio" class="navbar-item">
-                audio
+              <nuxt-link to="/teachings/talks" class="navbar-item">
+                talks
               </nuxt-link>
 
               <nuxt-link to="/teachings/books" class="navbar-item">

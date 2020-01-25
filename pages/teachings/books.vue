@@ -16,7 +16,7 @@
         <p>
           <strong>{{ book.title }}</strong>
         </p>
-        <div v-html="$md.render(book.description)" />
+        <div v-if="book.description" v-html="$md.render(book.description)" />
       </li>
     </ul>
   </div>

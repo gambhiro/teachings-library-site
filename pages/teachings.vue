@@ -22,7 +22,7 @@ export default class extends Vue {
 
   items: Link[] = [
     { toPath: '/teachings', label: 'teachings' },
-    { toPath: '/teachings/audio', label: 'audio' },
+    { toPath: '/teachings/talks', label: 'talks' },
     { toPath: '/teachings/books', label: 'books' }
   ];
 }
