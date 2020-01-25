@@ -35,13 +35,19 @@ export const mutations: MutationTree<TalksStoreState> = {
   setTalksAll(state, all: TalksData) {
     state.all = all;
   },
-  setTalksSuccess(state, all: TalksData) {
-    state.all.kind = RD.rk.Success;
-    state.all.data = all.data;
+  setTalksNotAsked(state) {
+    state.all.kind = RD.rk.NotAsked;
+  },
+  setTalksLoading(state) {
+    state.all.kind = RD.rk.Loading;
   },
   setTalksFailure(state, all: TalksData) {
     state.all.kind = RD.rk.Failure;
     state.all.error = all.error;
+  },
+  setTalksSuccess(state, all: TalksData) {
+    state.all.kind = RD.rk.Success;
+    state.all.data = all.data;
   }
 };
 

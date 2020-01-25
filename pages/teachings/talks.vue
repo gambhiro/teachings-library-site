@@ -51,6 +51,7 @@ export default class extends Vue {
   mounted(): void {
     const a = (this.$store.state.talks as TalksStoreState).all.kind;
     if (a === RD.rk.NotAsked) {
+      this.$store.commit('talks/setTalksLoading');
       this.$store.dispatch('talks/fetchTalks');
     }
   }

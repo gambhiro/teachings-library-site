@@ -35,13 +35,19 @@ export const mutations: MutationTree<BooksStoreState> = {
   setBooksAll(state, all: BooksData) {
     state.all = all;
   },
-  setBooksSuccess(state, all: BooksData) {
-    state.all.kind = RD.rk.Success;
-    state.all.data = all.data;
+  setBooksNotAsked(state) {
+    state.all.kind = RD.rk.NotAsked;
+  },
+  setBooksLoading(state) {
+    state.all.kind = RD.rk.Loading;
   },
   setBooksFailure(state, all: BooksData) {
     state.all.kind = RD.rk.Failure;
     state.all.error = all.error;
+  },
+  setBooksSuccess(state, all: BooksData) {
+    state.all.kind = RD.rk.Success;
+    state.all.data = all.data;
   }
 };
 
