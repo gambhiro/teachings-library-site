@@ -1,38 +1,38 @@
 <template>
-  <div class="book-item">
-    <h4>{{ book.title }}</h4>
-    <ul class="author-list">
-      <li
-        v-for="author in book.authors"
-        :key="author.name"
-        :class="{ 'has-separator': book.authors.length > 1 }"
-      >
-        {{ author.name }}
+  <div class="talk-item">
+    <h4>
+      <span>{{ talk.title }}</span>
+      <span v-if="talk.album_title"> &ndash; {{ talk.album_title }}</span>
+    </h4>
+    <ul v-if="talk.author" class="author-list">
+      <li>
+        {{ talk.author.name }}
       </li>
     </ul>
     <div class="columns">
       <div class="column is-one-third">
-        <div v-if="book.cover" class="book-cover">
-          <img :src="book.cover.url" />
+        <div v-if="talk.cover" class="talk-cover">
+          <img :src="talk.cover.url" />
         </div>
       </div>
       <div class="column">
-        <div v-if="book.description" v-html="$md.render(book.description)" />
-        <div class="book-downloads buttons">
+        <div v-if="talk.description" v-html="$md.render(talk.description)" />
+        <div v-if="talk.mp3" class="talk-player">
+          <audio controls>
+            <source :src="talk.mp3.url" :type="talk.mp3.mime" />
+            Your browser does not support the <code>audio</code> element.
+          </audio>
+        </div>
+        <div v-if="talk.mp3" class="talk-downloads">
           <a
-            v-for="file in bookDownloads"
-            :key="file.url"
             class="button is-link is-small is-light is-outlined"
-            :href="file.url"
+            :href="talk.mp3.url"
             target="_blank"
           >
             <span class="icon is-small is-right">
               <fa :icon="fas.faDownload" />
             </span>
-            <span v-if="file.ext == '.epub'">EPUB</span>
-            <span v-else-if="file.ext == '.mobi'">MOBI</span>
-            <span v-else-if="file.ext == '.pdf'">PDF</span>
-            <span v-else>{{ file.name }}</span>
+            <span>MP3</span>
           </a>
         </div>
       </div>
@@ -44,29 +44,12 @@
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import { IconPack } from '@fortawesome/fontawesome-common-types';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { Book, Download } from '~/types';
+import { Talk } from '~/types';
 
 @Component
 export default class extends Vue {
   @Prop({ required: true, type: Object })
-  book!: Book;
-
-  get bookDownloads(): Download[] {
-    const d = this.book.downloads.slice(0);
-    const sorted = d.sort(function(a, b) {
-      const extA = a.ext.toUpperCase();
-      const extB = b.ext.toUpperCase();
-      if (extA < extB) {
-        return -1;
-      }
-      if (extA > extB) {
-        return 1;
-      }
-      return 0;
-    });
-
-    return sorted;
-  }
+  talk!: Talk;
 
   get fas(): IconPack {
     return fas;
@@ -75,10 +58,14 @@ export default class extends Vue {
 </script>
 
 <style lang="sass">
-.book-item
+.talk-item
   margin-bottom: 2rem
 
-div.book-cover
+div.talk-player audio
+  margin-top: 1rem
+  width: 100%
+
+div.talk-cover
   width: 136px
   padding: 3px
   border: 1px solid hsl(0, 0%, 60%)
@@ -92,8 +79,8 @@ h4
   font-weight: $content-heading-weight
   line-height: $content-heading-line-height
 
-div.book-downloads
-  margin-top: 2rem
+div.talk-downloads
+  margin-top: 1rem
 
 ul.author-list
   margin-bottom: 0.8rem

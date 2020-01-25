@@ -5,9 +5,7 @@
       <p>Connecting...</p>
     </div>
     <div v-else-if="booksKind === RD.rk.Loading">
-      <div class="cssload-container">
-        <div class="cssload-zenith"></div>
-      </div>
+      <Loader />
     </div>
     <div v-else-if="booksKind === RD.rk.Failure">
       <p>Error</p>
@@ -21,6 +19,7 @@
 import { Vue, Component } from 'nuxt-property-decorator';
 import PageHeader from '~/components/PageHeader.vue';
 import BookList from '~/components/BookList.vue';
+import Loader from '~/components/Loader.vue';
 import * as RD from '~/plugins/remote-data';
 // eslint-disable-next-line
 import { BooksStoreState } from '~/store/books';
@@ -29,7 +28,8 @@ import { Book } from '~/types';
 @Component({
   components: {
     PageHeader,
-    BookList
+    BookList,
+    Loader
   },
 
   async fetch(context) {

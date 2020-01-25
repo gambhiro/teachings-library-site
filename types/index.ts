@@ -22,6 +22,10 @@ export interface Talk {
   title: string;
   author: Author;
   description: string;
+  // eslint-disable-next-line camelcase
+  album_title: string;
+  // eslint-disable-next-line camelcase
+  track_number: number;
 }
 
 export interface Link {
