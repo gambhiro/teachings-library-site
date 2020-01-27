@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BreadCrumbs :items="items" />
+    <BreadCrumbs :items="submenu" />
     <nuxt-child />
   </div>
 </template>
@@ -8,7 +8,7 @@
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
 import BreadCrumbs from '~/components/BreadCrumbs.vue';
-import { Link } from '~/types';
+import { MenuLink } from '~/types';
 
 @Component({
   components: {
@@ -20,10 +20,8 @@ export default class extends Vue {
     return 'page';
   }
 
-  items: Link[] = [
-    { toPath: '/teachings', label: 'teachings' },
-    { toPath: '/teachings/talks', label: 'talks' },
-    { toPath: '/teachings/books', label: 'books' }
-  ];
+  get submenu(): MenuLink {
+    return this.$store.getters['menu/submenu']('/teachings');
+  }
 }
 </script>

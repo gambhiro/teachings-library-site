@@ -75,8 +75,14 @@ export default class extends Vue {
 </script>
 
 <style lang="sass">
-.book-item
+div.book-item
   margin-bottom: 2rem
+  h4
+    font-size: 1.3rem
+    margin-bottom: 0.5rem
+    color: $content-heading-color
+    font-weight: $content-heading-weight
+    line-height: $content-heading-line-height
 
 div.book-cover
   width: 136px
@@ -84,13 +90,6 @@ div.book-cover
   border: 1px solid hsl(0, 0%, 60%)
   img
     width: 130px
-
-h4
-  font-size: 1.3rem
-  margin-bottom: 0.5rem
-  color: $content-heading-color
-  font-weight: $content-heading-weight
-  line-height: $content-heading-line-height
 
 div.book-downloads
   margin-top: 2rem

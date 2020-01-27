@@ -1,7 +1,7 @@
 <template>
   <div>
-    <PageHeader :title="title" />
-    <p>{{ text }}</p>
+    <PageHeader title="Category: Guided Meditation" />
+    <p>Mauris ac felis vel velit tristique imperdiet.</p>
   </div>
 </template>
 
@@ -18,8 +18,5 @@ export default class extends Vue {
   layout(): string {
     return 'page';
   }
-
-  title = 'News';
-  text = 'Nam euismod tellus id erat.';
 }
 </script>

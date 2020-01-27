@@ -28,7 +28,8 @@ export interface Talk {
   track_number: number;
 }
 
-export interface Link {
-  toPath: string;
+export interface MenuLink {
+  path: string;
   label: string;
+  sub: MenuLink[];
 }

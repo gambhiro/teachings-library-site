@@ -1,28 +1,7 @@
 <template>
   <div>
-    <PageHeader :title="title" />
-    <p>
-      This <em>Forest Sangha site</em> functions as a portal page for the Branch
-      Monasteries and Associated Monasteries of disciples of Venerable Ajahn
-      Chah, particularly in the West.
-    </p>
-
-    <p>
-      <strong>Branch Monasteries:</strong>
-      <nuxt-link to="/community/monasteries"
-        >these are monastic residences</nuxt-link
-      >
-      fully affiliated with Wat Nong Pah Pong, Ajahn Chah's mother monastery in
-      NE Thailand. In most cases they offer training to those wishing to 'go
-      forth'.
-    </p>
-
-    <p>
-      <strong>Associated Monasteries:</strong>
-      <nuxt-link to="/community/monasteries">these communities</nuxt-link>
-      may be newly established and in the process of becoming fully affiliated
-      with Wat Nong Pah Pong.
-    </p>
+    <PageHeader title="About" />
+    <p>Mauris ac felis vel velit tristique imperdiet.</p>
   </div>
 </template>
 
@@ -39,7 +18,5 @@ export default class extends Vue {
   layout(): string {
     return 'page';
   }
-
-  title = 'About';
 }
 </script>

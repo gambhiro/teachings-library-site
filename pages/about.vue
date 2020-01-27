@@ -1,14 +1,16 @@
 <template>
   <div>
-    <BreadCrumbs :items="items" />
+    <BreadCrumbs :items="submenu" />
     <nuxt-child />
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
+// eslint-disable-next-line
+import { MenuStoreState } from '~/store/menu';
+import { MenuLink } from '~/types';
 import BreadCrumbs from '~/components/BreadCrumbs.vue';
-import { Link } from '~/types';
 
 @Component({
   components: {
@@ -20,11 +22,8 @@ export default class extends Vue {
     return 'page';
   }
 
-  items: Link[] = [
-    { toPath: '/about', label: 'about' },
-    { toPath: '/about/history', label: 'history' },
-    { toPath: '/about/this-website', label: 'this website' },
-    { toPath: '/about/disclaimer', label: 'disclaimer' }
-  ];
+  get submenu(): MenuLink {
+    return this.$store.getters['menu/submenu']('/about');
+  }
 }
 </script>

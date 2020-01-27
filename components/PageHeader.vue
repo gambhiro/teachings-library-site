@@ -1,21 +1,6 @@
 <template>
-  <div class="columns">
-    <div class="column is-half">
-      <h1 class="page-title">{{ title.toLowerCase() }}</h1>
-    </div>
-  </div>
+  <h1 class="page-title">{{ title }}</h1>
 </template>
-
-<style lang="sass">
-h1.page-title
-  font-size: 3rem
-  text-align: right
-  text-transform: lowecase
-  font-weight: 400
-  margin-top: 20px
-  margin-bottom: 10px
-  color: #bfbfbf
-</style>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
@@ -28,7 +13,7 @@ export default class extends Vue {
 
   head(): {} {
     return {
-      title: utils.titleCase(this.title) + ' - Forest Sangha'
+      title: utils.titleCase(this.title) + ' - Amaravati Buddhist Monastery'
     };
   }
 }
