@@ -1,11 +1,21 @@
 <template>
-  <h1>Categories</h1>
+  <div>
+    <PageHeader title="Categories" />
+    <p>Mauris ac felis vel velit tristique imperdiet.</p>
+  </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
+import PageHeader from '@/components/PageHeader.vue';
 
-@Component
+// TODO: list of categories
+
+@Component({
+  components: {
+    PageHeader
+  }
+})
 export default class extends Vue {
   layout(): string {
     return 'page';

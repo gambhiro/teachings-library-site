@@ -14,6 +14,15 @@
         <div v-if="talk.cover" class="talk-cover">
           <img :src="talk.cover.url" />
         </div>
+        <div
+          v-else-if="
+            talk.talk_collections.length > 0 &&
+              talk.talk_collections[0].cover !== null
+          "
+          class="talk-cover"
+        >
+          <img :src="talk.talk_collections[0].cover.url" />
+        </div>
       </div>
       <div class="column">
         <div v-if="talk.description" v-html="$md.render(talk.description)" />
@@ -44,7 +53,7 @@
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import { IconPack } from '@fortawesome/fontawesome-common-types';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { Talk } from '~/types';
+import { Talk } from '@/types';
 
 @Component
 export default class extends Vue {

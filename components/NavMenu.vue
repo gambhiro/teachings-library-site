@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
-import { MenuLink } from '~/types';
+import { MenuLink } from '@/types';
 
 @Component
 export default class extends Vue {

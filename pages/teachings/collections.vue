@@ -7,7 +7,12 @@
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
-import PageHeader from '~/components/PageHeader.vue';
+import PageHeader from '@/components/PageHeader.vue';
+
+// TODO: list collections
+// - create store
+// - fetch() and mounted()
+// - list
 
 @Component({
   components: {

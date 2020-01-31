@@ -101,10 +101,10 @@
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
-import TopNav from '~/components/TopNav.vue';
-import Footer from '~/components/Footer.vue';
-import LandingHero from '~/components/LandingHero.vue';
-import LandingCard from '~/components/LandingCard.vue';
+import TopNav from '@/components/TopNav.vue';
+import Footer from '@/components/Footer.vue';
+import LandingHero from '@/components/LandingHero.vue';
+import LandingCard from '@/components/LandingCard.vue';
 
 @Component({
   components: {

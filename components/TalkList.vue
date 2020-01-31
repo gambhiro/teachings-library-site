@@ -6,8 +6,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
-import TalkItem from '~/components/TalkItem.vue';
-import { Talk } from '~/types';
+import TalkItem from '@/components/TalkItem.vue';
+import { Talk } from '@/types';
 
 @Component({
   components: {

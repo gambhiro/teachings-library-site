@@ -1,8 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-import { GetterTree } from 'vuex';
-import { RootState } from '~/store';
-import { MenuLink } from '~/types';
+import { getterTree } from 'typed-vuex';
+import { MenuLink } from '@/types';
 
 const aboutMenu: MenuLink = {
   path: '/about',
@@ -29,7 +26,7 @@ const teachingsMenu: MenuLink = {
     { path: '/teachings/talks', label: 'Talks', sub: [] },
     { path: '/teachings/books', label: 'Books', sub: [] },
     { path: '/categories/audiobook', label: 'Audiobooks', sub: [] },
-    { path: '/teachings/videos', label: 'Videos', sub: [] },
+    { path: '/categories/videos', label: 'Videos', sub: [] },
     { path: '/teachings/articles', label: 'Articles', sub: [] },
     { path: '/teachings/collections', label: 'Collections', sub: [] },
     {
@@ -79,7 +76,7 @@ export const state = (): MenuStoreState => {
   return { items: menu };
 };
 
-export const getters: GetterTree<MenuStoreState, RootState> = {
+export const getters = getterTree(state, {
   menu: (state) => {
     return state.items;
   },
@@ -89,4 +86,4 @@ export const getters: GetterTree<MenuStoreState, RootState> = {
       return i.path === subpath;
     })[0];
   }
-};
+});

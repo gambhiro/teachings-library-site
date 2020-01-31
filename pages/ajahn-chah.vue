@@ -7,10 +7,8 @@
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
-// eslint-disable-next-line
-import { MenuStoreState } from '~/store/menu';
-import { MenuLink } from '~/types';
-import BreadCrumbs from '~/components/BreadCrumbs.vue';
+import { MenuLink } from '@/types';
+import BreadCrumbs from '@/components/BreadCrumbs.vue';
 
 @Component({
   components: {
@@ -23,7 +21,7 @@ export default class extends Vue {
   }
 
   get submenu(): MenuLink {
-    return this.$store.getters['menu/submenu']('/ajahn-chah');
+    return this.$accessor.menu.submenu('/ajahn-chah');
   }
 }
 </script>

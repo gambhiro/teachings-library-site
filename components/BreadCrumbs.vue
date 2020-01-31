@@ -14,8 +14,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
-import CrumbItem from '~/components/CrumbItem.vue';
-import { MenuLink } from '~/types';
+import CrumbItem from '@/components/CrumbItem.vue';
+import { MenuLink } from '@/types';
 
 @Component({
   components: {

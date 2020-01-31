@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
-import PageHeader from '~/components/PageHeader.vue';
+import PageHeader from '@/components/PageHeader.vue';
 
 @Component({
   components: {

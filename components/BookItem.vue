@@ -19,6 +19,12 @@
       <div class="column">
         <div v-if="book.description" v-html="$md.render(book.description)" />
         <div class="book-downloads buttons">
+          <nuxt-link
+            :to="$readLink(book)"
+            class="button is-primary is-small is-light is-outlined"
+          >
+            Read
+          </nuxt-link>
           <a
             v-for="file in bookDownloads"
             :key="file.url"
@@ -44,7 +50,7 @@
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import { IconPack } from '@fortawesome/fontawesome-common-types';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { Book, Download } from '~/types';
+import { Book, Download } from '@/types';
 
 @Component
 export default class extends Vue {

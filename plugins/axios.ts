@@ -1,9 +1,19 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default ({ _app, $axios }: any, inject: any): void => {
+import { Plugin } from '@nuxt/types';
+import { NuxtAxiosInstance } from '@nuxtjs/axios';
+
+declare module '@nuxt/types' {
+  interface NuxtAppOptions {
+    $api: NuxtAxiosInstance;
+  }
+}
+
+const apiAxios: Plugin = (context, inject) => {
   // Create a custom axios instance
-  const api = $axios.create({
+  const api = context.$axios.create({
     baseURL: process.env.apiUrl
   });
 
   inject('api', api);
 };
+
+export default apiAxios;

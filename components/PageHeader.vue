@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
-import utils from '~/assets/js/utils';
+import utils from '@/assets/js/utils';
 
 @Component
 export default class extends Vue {

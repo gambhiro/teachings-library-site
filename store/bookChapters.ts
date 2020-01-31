@@ -1,20 +1,20 @@
 import { getterTree, mutationTree, actionTree } from 'typed-vuex';
 import * as RD from '@/plugins/remote-data';
-import { Book } from '@/types';
+import { BookChapter } from '@/types';
 
-export type BooksAll = {
+export type BookChaptersAll = {
   kind: RD.rk;
-  data: Book[];
+  data: BookChapter[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error: any;
 };
 
-export type BooksStoreState = {
-  all: BooksAll;
+export type BookChaptersStoreState = {
+  all: BookChaptersAll;
 };
 
-export const state = (): BooksStoreState => {
-  const s: BooksAll = {
+export const state = (): BookChaptersStoreState => {
+  const s: BookChaptersAll = {
     kind: RD.rk.NotAsked,
     data: [],
     error: {}
@@ -24,31 +24,30 @@ export const state = (): BooksStoreState => {
 };
 
 export const getters = getterTree(state, {
-  booksAll: (state) => {
+  bookChaptersAll: (state) => {
     return state.all;
   },
 
-  booksData: (state) => {
+  booksChaptersData: (state) => {
     return state.all.data;
   }
 });
 
 export const mutations = mutationTree(state, {
-  // FIXME: rename to setAll
-  setBooksAll(state, all: BooksAll) {
+  setAll(state, all: BookChaptersAll) {
     state.all = all;
   },
-  setBooksNotAsked(state) {
+  setNotAsked(state) {
     state.all.kind = RD.rk.NotAsked;
   },
-  setBooksLoading(state) {
+  setLoading(state) {
     state.all.kind = RD.rk.Loading;
   },
-  setBooksFailure(state, all: BooksAll) {
+  setFailure(state, all: BookChaptersAll) {
     state.all.kind = RD.rk.Failure;
     state.all.error = all.error;
   },
-  setBooksSuccess(state, all: BooksAll) {
+  setSuccess(state, all: BookChaptersAll) {
     state.all.kind = RD.rk.Success;
     state.all.data = all.data;
   }
@@ -57,12 +56,12 @@ export const mutations = mutationTree(state, {
 export const actions = actionTree(
   { state, getters, mutations },
   {
-    async fetchBooks({ commit }) {
+    async fetchBookChapters({ commit }) {
       const ret = await this.app.$api
-        .get('/books')
+        .get('/book-chapters')
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .then((res: any) => {
-          const s: BooksAll = {
+          const s: BookChaptersAll = {
             kind: RD.rk.Success,
             data: res.data,
             error: null
@@ -73,7 +72,7 @@ export const actions = actionTree(
         .catch((e: any) => {
           // context.error({ statusCode: 404, message: 'Books not found' })
 
-          const s: BooksAll = {
+          const s: BookChaptersAll = {
             kind: RD.rk.Failure,
             data: [],
             error: e
@@ -82,9 +81,9 @@ export const actions = actionTree(
         });
 
       if (ret.kind === RD.rk.Success) {
-        commit('setBooksSuccess', ret);
+        commit('setSuccess', ret);
       } else {
-        commit('setBooksFailure', ret);
+        commit('setFailure', ret);
       }
     }
   }

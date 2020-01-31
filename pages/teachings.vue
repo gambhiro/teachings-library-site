@@ -7,8 +7,8 @@
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
-import BreadCrumbs from '~/components/BreadCrumbs.vue';
-import { MenuLink } from '~/types';
+import BreadCrumbs from '@/components/BreadCrumbs.vue';
+import { MenuLink } from '@/types';
 
 @Component({
   components: {
@@ -21,7 +21,7 @@ export default class extends Vue {
   }
 
   get submenu(): MenuLink {
-    return this.$store.getters['menu/submenu']('/teachings');
+    return this.$accessor.menu.submenu('/teachings');
   }
 }
 </script>

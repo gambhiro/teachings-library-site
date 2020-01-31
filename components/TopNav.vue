@@ -18,7 +18,7 @@
       </a>
       <div class="navbar-brand">
         <nuxt-link id="topnav-logo" class="navbar-item" to="/">
-          <img src="~/assets/images/abm-logo-topnav.svg" />
+          <img src="@/assets/images/abm-logo-topnav.svg" />
         </nuxt-link>
 
         <a
@@ -62,10 +62,8 @@
 import { Vue, Component } from 'nuxt-property-decorator';
 import { IconPack } from '@fortawesome/fontawesome-common-types';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-// eslint-disable-next-line
-import { MenuStoreState } from '~/store/menu';
-import { MenuLink } from '~/types';
-import NavMenu from '~/components/NavMenu.vue';
+import { MenuLink } from '@/types';
+import NavMenu from '@/components/NavMenu.vue';
 
 @Component({
   components: {
@@ -74,7 +72,7 @@ import NavMenu from '~/components/NavMenu.vue';
 })
 export default class extends Vue {
   get menu(): MenuLink[] {
-    return (this.$store.state.menu as MenuStoreState).items;
+    return this.$accessor.menu.items;
   }
 
   get fas(): IconPack {

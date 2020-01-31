@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PageHeader title="Lanugages" />
+    <PageHeader title="Language" />
     <p>Mauris ac felis vel velit tristique imperdiet.</p>
   </div>
 </template>
