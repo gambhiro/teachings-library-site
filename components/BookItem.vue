@@ -20,6 +20,7 @@
         <div v-if="book.description" v-html="$md.render(book.description)" />
         <div class="book-downloads buttons">
           <nuxt-link
+            v-if="showRead"
             :to="$readLink(book)"
             class="button is-primary is-small is-light is-outlined"
           >
@@ -56,6 +57,9 @@ import { Book, Download } from '@/types';
 export default class extends Vue {
   @Prop({ required: true, type: Object })
   book!: Book;
+
+  @Prop({ required: false, type: Boolean, default: true })
+  showRead!: true;
 
   get bookDownloads(): Download[] {
     const d = this.book.downloads.slice(0);

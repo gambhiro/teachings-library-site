@@ -1,16 +1,51 @@
 <template>
   <div>
-    <PageHeader v-if="chapterData.book" :title="chapterData.book.title" />
-    <h2>Chapter: {{ chapterData.title }}</h2>
-    <p>Mauris ac felis vel velit tristique imperdiet.</p>
-    <ul v-if="chapterData.talks.length > 0">
-      <li v-for="talk in chapterData.talks" :key="talk.id">{{ talk.title }}</li>
-    </ul>
+    <PageHeader v-if="chapterData.title" :title="pageTitle()" />
+    <p style="padding-bottom: 2em;">
+       From <nuxt-link :to="$readLink(chapterData.book)">{{
+        chapterData.book.title
+      }}</nuxt-link>
+    </p>
+
+    <div v-if="chapterData.talks.length > 0" class="is-clearfix">
+      <div class="is-pulled-right chapter-listen">
+        <h3>Listen to this chapter</h3>
+        <div v-for="talk in chapterData.talks" :key="talk.id">
+          <div v-if="talk.mp3">
+            <div class="listen-title">
+              {{ talk.title }}
+
+              <a
+                class="button is-link is-small is-light is-outlined is-pulled-right"
+                :href="talk.mp3.url"
+                target="_blank"
+              >
+                <span class="icon is-small is-right">
+                  <fa :icon="fas.faDownload" />
+                </span>
+                <span>MP3</span>
+              </a>
+            </div>
+
+            <div class="talk-player">
+              <audio controls>
+                <source :src="talk.mp3.url" :type="talk.mp3.mime" />
+                Your browser does not support the <code>audio</code> element.
+              </audio>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-content" v-html="$md.render(chapterData.content)"></div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
+import { IconPack } from '@fortawesome/fontawesome-common-types';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 import PageHeader from '@/components/PageHeader.vue';
 import { BookChapter } from '@/types';
 import * as RD from '@/plugins/remote-data';
@@ -33,6 +68,12 @@ export default class extends Vue {
 
   mounted(): void {
     this.$fetchBookChaptersClient();
+  }
+
+  pageTitle(): string {
+    return (
+      'Chapter ' + this.chapterData.toc_order + '. ' + this.chapterData.title
+    );
   }
 
   get chapterData(): BookChapter {
@@ -63,6 +104,10 @@ export default class extends Vue {
     }
 
     return chapter;
+  }
+
+  get fas(): IconPack {
+    return fas;
   }
 }
 </script>

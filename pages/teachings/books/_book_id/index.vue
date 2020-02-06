@@ -1,8 +1,9 @@
 <template>
   <div>
     <PageHeader :title="bookData.title" />
-    <p>Mauris ac felis vel velit tristique imperdiet.</p>
-    <ul v-if="bookData.book_chapters.length > 0">
+    <BookItem :book="bookData" :show-read="false" />
+    <h2 v-if="bookData.book_chapters.length > 0" class="toc-title">Chapters</h2>
+    <ul v-if="bookData.book_chapters.length > 0" class="toc-list">
       <li v-for="chapter in bookData.book_chapters" :key="chapter.toc_order">
         <nuxt-link :to="$chapterLink(bookData, chapter)">
           {{ chapter.title }}
@@ -15,11 +16,13 @@
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
 import PageHeader from '@/components/PageHeader.vue';
+import BookItem from '@/components/BookItem.vue';
 import { Book } from '@/types';
 
 @Component({
   components: {
-    PageHeader
+    PageHeader,
+    BookItem
   },
 
   async fetch(context) {
