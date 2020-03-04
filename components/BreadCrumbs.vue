@@ -1,10 +1,11 @@
 <template>
   <nav class="breadcrumb has-dot-separator" aria-label="breadcrumbs">
     <ul>
+      <CrumbItem :key="items.path" :to-path="items.path" :label="items.label" />
       <CrumbItem
-        v-for="i in items"
-        :key="i.toPath"
-        :to-path="i.toPath"
+        v-for="i in items.sub"
+        :key="i.path"
+        :to-path="i.path"
         :label="i.label"
       />
     </ul>
@@ -13,8 +14,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
-import CrumbItem from '~/components/CrumbItem.vue';
-import { Link } from '~/types';
+import CrumbItem from '@/components/CrumbItem.vue';
+import { MenuLink } from '@/types';
 
 @Component({
   components: {
@@ -22,7 +23,7 @@ import { Link } from '~/types';
   }
 })
 export default class extends Vue {
-  @Prop({ required: true, type: Array })
-  items!: Array<Link>;
+  @Prop({ required: true, type: Object })
+  items!: MenuLink;
 }
 </script>

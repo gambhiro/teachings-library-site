@@ -19,6 +19,13 @@
       <div class="column">
         <div v-if="book.description" v-html="$md.render(book.description)" />
         <div class="book-downloads buttons">
+          <nuxt-link
+            v-if="showRead"
+            :to="$readLink(book)"
+            class="button is-primary is-small is-light is-outlined"
+          >
+            Read
+          </nuxt-link>
           <a
             v-for="file in bookDownloads"
             :key="file.url"
@@ -44,12 +51,15 @@
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import { IconPack } from '@fortawesome/fontawesome-common-types';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { Book, Download } from '~/types';
+import { Book, Download } from '@/types';
 
 @Component
 export default class extends Vue {
   @Prop({ required: true, type: Object })
   book!: Book;
+
+  @Prop({ required: false, type: Boolean, default: true })
+  showRead!: true;
 
   get bookDownloads(): Download[] {
     const d = this.book.downloads.slice(0);
@@ -75,8 +85,14 @@ export default class extends Vue {
 </script>
 
 <style lang="sass">
-.book-item
+div.book-item
   margin-bottom: 2rem
+  h4
+    font-size: 1.3rem
+    margin-bottom: 0.5rem
+    color: $content-heading-color
+    font-weight: $content-heading-weight
+    line-height: $content-heading-line-height
 
 div.book-cover
   width: 136px
@@ -84,13 +100,6 @@ div.book-cover
   border: 1px solid hsl(0, 0%, 60%)
   img
     width: 130px
-
-h4
-  font-size: 1.3rem
-  margin-bottom: 0.5rem
-  color: $content-heading-color
-  font-weight: $content-heading-weight
-  line-height: $content-heading-line-height
 
 div.book-downloads
   margin-top: 2rem

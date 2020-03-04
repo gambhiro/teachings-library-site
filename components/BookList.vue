@@ -6,8 +6,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
-import BookItem from '~/components/BookItem.vue';
-import { Book } from '~/types';
+import BookItem from '@/components/BookItem.vue';
+import { Book } from '@/types';
 
 @Component({
   components: {

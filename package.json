@@ -1,7 +1,7 @@
 {
-  "name": "forestsangha",
+  "name": "teachings-library",
   "version": "1.0.0",
-  "description": "forestsangha.org application",
+  "description": "Teachings Library application",
   "author": "Gambhiro",
   "private": true,
   "scripts": {
@@ -10,15 +10,11 @@
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
-    "deploy": "yarn build && gcloud app deploy app.yaml --project fs-dev-265409",
-    "logs": "gcloud app logs tail --project=fs-dev-265409 -s default",
-    "postinstall": "[ -z \"$GANDI\" ] || NODE_ENV=production npm run build"
-  },
-  "config": {
-    "NODE_ENV": "development"
+    "deploy": "yarn build && gcloud app deploy app.yaml --project teachings-library-development",
+    "logs": "gcloud app logs tail --project=teachings-library-development -s default"
   },
   "lint-staged": {
-    "*.{js,vue}": "eslint"
+    "*.{js,ts,vue}": "eslint"
   },
   "husky": {
     "hooks": {
@@ -49,6 +45,7 @@
     "nuxt-fontawesome": "^0.4.0",
     "nuxt-property-decorator": "^2.5.0",
     "nuxt-start": "^2.11.0",
+    "nuxt-typed-vuex": "^0.1.15",
     "prettier": "^1.16.4",
     "stylelint": "^10.1.0",
     "stylelint-config-recommended": "^3.0.0"

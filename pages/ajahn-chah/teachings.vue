@@ -1,13 +1,13 @@
 <template>
   <div>
-    <PageHeader :title="title" />
-    <p>{{ text }}</p>
+    <PageHeader title="Teachings" />
+    <p>Mauris ac felis vel velit tristique imperdiet.</p>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
-import PageHeader from '~/components/PageHeader.vue';
+import PageHeader from '@/components/PageHeader.vue';
 
 @Component({
   components: {
@@ -18,8 +18,5 @@ export default class extends Vue {
   layout(): string {
     return 'page';
   }
-
-  title = 'Disclaimer';
-  text = 'Nam euismod tellus id erat.';
 }
 </script>

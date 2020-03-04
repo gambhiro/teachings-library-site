@@ -6,9 +6,19 @@
     aria-label="main navigation"
   >
     <div class="container">
+      <a
+        id="nav-back-to-main"
+        href="https://www.amaravati.org/"
+        class="navbar-item"
+      >
+        <span class="icon is-small is-right">
+          <fa :icon="fas.faArrowLeft" />
+        </span>
+        <span style="padding-left: 0.5rem;">Main</span>
+      </a>
       <div class="navbar-brand">
-        <nuxt-link class="navbar-item" to="/">
-          <img src="~/assets/images/topnav-logo.svg" />
+        <nuxt-link id="topnav-logo" class="navbar-item" to="/">
+          <img src="@/assets/images/abm-logo-topnav.svg" />
         </nuxt-link>
 
         <a
@@ -16,7 +26,7 @@
           class="navbar-burger burger"
           aria-label="menu"
           aria-expanded="false"
-          data-target="navbarBasicExample"
+          data-target="navbarBurgerBasic"
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -24,79 +34,9 @@
         </a>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
+      <div id="navbarBurgerBasic" class="navbar-menu">
         <div class="navbar-start">
-          <div class="navbar-item has-dropdown is-hoverable">
-            <nuxt-link to="/about" class="navbar-link">
-              about
-            </nuxt-link>
-
-            <div class="navbar-dropdown">
-              <nuxt-link to="/about/history" class="navbar-item">
-                history
-              </nuxt-link>
-
-              <nuxt-link to="/about/this-website" class="navbar-item">
-                this website
-              </nuxt-link>
-
-              <nuxt-link to="/about/disclaimer" class="navbar-item">
-                disclaimer
-              </nuxt-link>
-            </div>
-          </div>
-
-          <div class="navbar-item has-dropdown is-hoverable">
-            <nuxt-link to="/ajahn-chah" class="navbar-link">
-              ajahn chah
-            </nuxt-link>
-
-            <div class="navbar-dropdown">
-              <nuxt-link to="/ajahn-chah/dedication" class="navbar-item">
-                dedication
-              </nuxt-link>
-
-              <nuxt-link to="/ajahn-chah/biography" class="navbar-item">
-                biography
-              </nuxt-link>
-            </div>
-          </div>
-
-          <div class="navbar-item has-dropdown is-hoverable">
-            <nuxt-link to="/community" class="navbar-link">
-              community
-            </nuxt-link>
-
-            <div class="navbar-dropdown">
-              <nuxt-link to="/community/news" class="navbar-item">
-                news
-              </nuxt-link>
-
-              <nuxt-link to="/community/monasteries" class="navbar-item">
-                monasteries
-              </nuxt-link>
-
-              <nuxt-link to="/community/calendars" class="navbar-item">
-                calendars
-              </nuxt-link>
-            </div>
-          </div>
-
-          <div class="navbar-item has-dropdown is-hoverable">
-            <nuxt-link to="/teachings" class="navbar-link">
-              teachings
-            </nuxt-link>
-
-            <div class="navbar-dropdown">
-              <nuxt-link to="/teachings/talks" class="navbar-item">
-                talks
-              </nuxt-link>
-
-              <nuxt-link to="/teachings/books" class="navbar-item">
-                books
-              </nuxt-link>
-            </div>
-          </div>
+          <NavMenu v-for="i in menu" :key="i.path" :menu="i" />
         </div>
 
         <div class="navbar-end">
@@ -122,11 +62,29 @@
 import { Vue, Component } from 'nuxt-property-decorator';
 import { IconPack } from '@fortawesome/fontawesome-common-types';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { MenuLink } from '@/types';
+import NavMenu from '@/components/NavMenu.vue';
 
-@Component
+@Component({
+  components: {
+    NavMenu
+  }
+})
 export default class extends Vue {
+  get menu(): MenuLink[] {
+    return this.$accessor.menu.items;
+  }
+
   get fas(): IconPack {
     return fas;
   }
 }
 </script>
+
+<style lang="sass">
+#nav-back-to-main
+  margin-right: 0.8rem
+
+#topnav-logo:hover
+  background-color: #fafafa
+</style>

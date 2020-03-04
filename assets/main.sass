@@ -1,10 +1,88 @@
 @charset "utf-8"
 
+@import url('https://fonts.googleapis.com/css?family=Lato:400,400i|Open+Sans:400,400i&display=swap&subset=latin-ext')
+
+$family-sans-serif: "Open Sans", sans-serif
+$family-primary: $family-sans-serif
+$family-secondary: $family-sans-serif
+
+$heading-family: "Lato", sans-serif
+
+// $body-background-color: $scheme-main !default
+// $body-size: 16px !default
+// $body-min-width: 300px !default
+// $body-rendering: optimizeLegibility !default
+// $body-family: $family-primary !default
+// $body-overflow-x: hidden !default
+// $body-overflow-y: scroll !default
+//
+// $body-color: $text !default
+// $body-font-size: 1em !default
+// $body-weight: $weight-normal !default
+// $body-line-height: 1.5 !default
+
 @import "colors"
 @import "mixins"
 @import "loader"
 
 @import "~bulma/bulma"
+
+h1, h2, h3, h4
+  font-family: $heading-family
+
+h1, h2
+  font-weight: 400
+  font-style: italic
+
+h1
+  color: $abm-gold
+  font-size: 34.5px
+
+h1.title
+  font-weight: 400
+  font-size: 34.5px
+  color: $abm-gold
+
+h1.page-title
+  font-size: 3rem
+  margin-top: 20px
+  margin-bottom: 10px
+  color: $abm-gold
+
+h2.toc-title
+  font-weight: 400
+  font-size: 25.0px
+  color: hsl(0, 0%, 20%)
+  text-decoration: underline
+  margin-bottom: 15px
+
+ul.toc-list
+  list-style-type: circle
+  li
+    padding-bottom: 0.5rem
+    a
+      color: darken($abm-gold, 10%)
+
+.chapter-content p
+  padding-bottom: 1em
+
+.chapter-listen
+  margin: 0 0 1rem 1rem
+  h3
+    font-size: 20px
+    font-weight: 400
+    font-style: italic
+    text-decoration: underline
+    padding-bottom: 1rem
+  .listen-title
+    height: 20px
+    padding-top: 0.6rem
+    padding-bottom: 0rem
+    a
+      margin-left: 2rem
+
+.page-wrap
+  background-color: white
 
 .container
   +desktop

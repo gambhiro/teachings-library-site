@@ -1,6 +1,6 @@
-# forestsangha
+# Teachings Library
 
-> forestsangha.org application
+> Teachings Library application
 
 ## Build Setup
 

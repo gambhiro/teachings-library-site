@@ -35,7 +35,12 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/axios', '@/plugins/remote-data'],
+  plugins: [
+    '@/plugins/axios',
+    '@/plugins/remote-data',
+    '@/plugins/store-helpers',
+    '@/plugins/url-helpers'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -48,7 +53,8 @@ module.exports = {
     same file. For example fighting over the last newline in a <style lang="sass"> block.
     */
     '@nuxtjs/stylelint-module',
-    ['@nuxt/typescript-build', { typeCheck: false }]
+    ['@nuxt/typescript-build', { typeCheck: false }],
+    'nuxt-typed-vuex'
   ],
   /*
    ** Nuxt.js modules
@@ -108,6 +114,7 @@ module.exports = {
         ['@babel/plugin-proposal-decorators', { legacy: true }],
         ['@babel/plugin-proposal-class-properties', { loose: true }]
       ]
-    }
+    },
+    transpile: [/typed-vuex/]
   }
 };
